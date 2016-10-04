@@ -51,7 +51,7 @@ This description walks through how the R script works and notes how the process 
   
   * Add feature labels to the x data set.  I start by assigning the feature names data to the column names of the x data set.  
   
-  * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  After filtering the data I'm left with 66 of the 561 features, with names included.
+  * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  I also exclude the meanFreq() estimates as they represent a weighted average of the frequency components rather than an average of the raw data components.  After filtering the data I'm left with 66 of the 561 features, with names included.
 
   * Clean up the feature names.  I remove the identifier number at the beginning of the feature name using the strsplit and sapply functions.  I also remove the parentheses and replace the dashes with underscores.  As an example:
     
