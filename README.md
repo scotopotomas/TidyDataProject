@@ -22,11 +22,11 @@ This description walks through how the R script works and notes how the process 
 
 ### Step 1: Script Preparation and Load Data
 
-  * First we load the necessary libraries: dplyr and readr, these are assumed to already be installed on the user's computer, if not they should be installed before running the script.
+  * First I load the necessary libraries: dplyr and readr, these are assumed to already be installed on the user's computer, if not they should be installed before running the script.
 
-  * Next we check if a Data directory already exists in the current working directory, if not we create the directory, download the data to that location and unzip the data file.
+  * Next I check if a Data directory already exists in the current working directory, if not I create the directory, download the data to that location and unzip the data file.
 
-  * The next step is to read-in the data files we'll need to complete the analysis.  The data files we'll use include the raw data and files that contain the feature and activity names.  The raw data is split into training and test sets and within each set split into the x, y, and subject files.  The files are listed below, only files used in the analysis are listed:
+  * The next step is to read-in the data files I'll need to complete the analysis.  The data files I use include the raw data and files that contain the feature and activity names.  The raw data is split into training and test sets and within each set split into the x, y, and subject files.  The files are listed below, only files used in the analysis are listed:
 
     - X_train.txt: contains the feature data for the training set (7,352 observations of 561 variables)
     - X_test.txt: contains the feature data for the test set (2,947 observations of 561 variables)
@@ -37,4 +37,21 @@ This description walks through how the R script works and notes how the process 
     - features.txt: contains the names and identifier for each feature (561 observations of 2 variables)
     - activity_labels.txt: contains the names and identifier for each activie (6 observations of 2 variables)
   
+### Step 2: Combine test and train data sets.
+
+  * I start by using the bind_rows command to replace each of the individual train and test data sets with a combined test and train data set.  This process is repeated for the x, y and subject data sets.
   
+  * After combining the data sets I remove the original data sets to clear up memory.
+  
+  * Once this step is completed I have merged the training and test data sets, though the resulting data set is still in three different pieces: x, y and subject.
+  
+### Step 3: Label data sets.
+
+  * Add meaningful labels to the y and subject data sets.  I label the variable in the y data set "activityid" (since it contains the id associated with each specific activity) and I label the variable in the subject data set "subject" (since it indicates which of the 30 subjects the observation reflects.)
+  
+  * Add feature labels to the x data set.  I start by assigning the feature names data to the column names of the x data set.  
+  
+  * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  After filtering the data I'm left with 66 of the 561 features, with names included.
+
+  * Clean up the feature names.  I remove the identifier number at the beginning of the feature name using the strsplit and sapply functions.  I also remove the parentheses and replace the dashes with underscores.  As an example: 
+  1 tBodyAcc-mean()-X -> tBodyAcc_mean_X
