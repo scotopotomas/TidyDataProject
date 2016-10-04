@@ -64,3 +64,26 @@ The original data set identifies the subject and activity for each observation i
 The analysis is interested in the average across all observations for each unique combination of subject and activity.  As there are 30 subjects and 6 activities and every subject had data available for every activity, there are 180 averages (rows) in the tidy data set.  Each row contains a variable with the average of that variable in the larger data set, grouped by activity and subject.
 
 The analysis also performs transformations on feature names to make them more readable from the original data set.
+
+## Variables
+
+ * Variable: Subject
+   - Description: Identifies the individual subject in the original experiment which the data refers to.
+   - Values: 1-30 (there were 30 subjects in the experiment)
+   - Example: 2 - This observation reflects data collected for subject 2 in the experiment.
+   
+ * Variable: Activity
+    - Description: Identifies the activity the subject was doing when the data was recorded.
+    - Values: (self-explanatory)
+      * WALKING
+      * WALKING_UPSTAIRS
+      * WALKING_DOWNSTAIRS
+      * SITTING
+      * STANDING
+      * LAYING
+    - Example: WALKING - This observation reflects data collected while the subject was walking.
+      
+ * Variables: All Other Variables
+   - Description: Each of the other variables in the dataset represents the average of the same variable in the original data set for the identified subject and activity.  The first part of the variable name (from the start of the variable name to the first underscore) is the underlying feature the variable represents in the original experiment.  For a description of the different features see the description above in the Data Source: Features section of the Code Book above.  The second part of the variable name (after the first underscore) identifies the particular summary method used on the feature, in this case either mean (for the arithmetic average) or std (for the standard deviation).  Some variables also have a third part (after the second underscore) this is for variables with a dimensional component and identifies whether the feature is a measurement of the X, Y or Z direction.
+   - Values: All features were normalized and bounded within [-1,1], thus their averages and standard deviations also fall within that range and the averages of multiple observations of averages and standard deviations would also fall within that range.
+   - Example: tBodyAcc_mean_X - From the features section above, tBodyACC is the time-domain body acceleration signal.  The mean indicates that we are looking at the average function applied to the signal.  The X at the end indicates we're looking at the acceleration in the X direction.
