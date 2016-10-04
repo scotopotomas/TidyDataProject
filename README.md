@@ -43,21 +43,21 @@ This description walks through how the R script works and notes how the process 
   
   * After combining the data sets I remove the original data sets to clear up memory.
   
-  * Once this step is completed I have merged the training and test data sets, though the resulting data set is still in three different pieces: x, y and subject.
+  * Once this step is completed I have completed requirement 1 and merged the training and test data sets, though the resulting data set is still in three different pieces: x, y and subject.
   
 ### Step 3: Label and filter data sets.
 
   * Add meaningful labels to the y and subject data sets.  I label the variable in the y data set "activityid" (since it contains the id associated with each specific activity) and I label the variable in the subject data set "subject" (since it indicates which of the 30 subjects the observation reflects.)
   
-  * Add feature labels to the x data set.  I start by assigning the feature names data to the column names of the x data set.  
+  * Add feature labels to the x data set.  I start by assigning the feature names data to the column names of the x data set.  This replaces the automated variable names, X1-X561, with descriptive names of what the variables represent. 
   
-  * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  I also exclude the meanFreq() estimates as they represent a weighted average of the frequency components rather than an average of the raw data components.  After filtering the data I'm left with 66 of the 561 features, with names included.
+  * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  I also exclude the meanFreq() estimates as they represent a weighted average of the frequency components rather than an average of the raw data components.  After filtering the data I'm left with 66 of the 561 features, with descriptive names included.
 
   * Clean up the feature names.  I remove the identifier number at the beginning of the feature name using the strsplit and sapply functions.  I also remove the parentheses and replace the dashes with underscores.  As an example:
     
      - 1 tBodyAcc-mean()-X -> tBodyAcc_mean_X
      
-  * Lastly I bind together the x, y and subject data sets using bind_cols into a single data set.  This data set consists of a column of subject identifiers, activityids and the 66 mean and std features of the x data set.  This data set meets requirements 2 and 4 as all variables have descriptive names that identify what is being measured and only mean and std features are included.  I consider the variable names descriptive since they relate directly to the original data that was recorded and using the code book their meaning can be understood.
+  * Lastly I bind together the x, y and subject data sets using bind_cols into a single data set.  This data set consists of a column of subject identifiers, activityids and the 66 mean and std features of the x data set.  This data set meets requirements 2 and 4 as all variables have descriptive names that identify what is being measured and only mean and std features are included.  I consider the variable names descriptive since they relate directly to the original data that was recorded and using the code book their meaning can be understood.  While the names are not entirely self-explanatory, they would be understood by someone who had read the experiment method and the code book.
   
 ### Step 4: Add activity labels and reorder data set.
 
@@ -67,7 +67,7 @@ This description walks through how the R script works and notes how the process 
   
   * Remove the activityid (as it is no longer needed) and move the activity name to the second column using subsetting from the base R package.
   
-  * After this step is completed I've met requirement 3, each activity in the data set has a descriptive name based on the activity names that were originally used in the experiment.
+  * After this step is completed I've met requirement 3, each activity in the data set has a descriptive name based on the activity names that were originally used in the experiment.  These names are simple enough to be entirely self-explanatory.
   
 ### Step 5: Create tidy data and write tidy data set.
 
@@ -77,6 +77,6 @@ This description walks through how the R script works and notes how the process 
   
   * I use summarize_each with a function of mean to calculate the mean of each feature for each unique combination of subject and activity.  This will be our tidy data set with one row for each observation and one variable in each column.
   
-  * Lastly, as outlined in the project submission guidelines I write the table using the write.table function with row.name=FALSE.
+  * Lastly, as outlined in the project submission guidelines I write the table using the write.table function with the option row.name=FALSE.
   
-  * After this step is done, I've completed the fifth requirement and have a tidy data set with the average of each variable for each unique combination of activity and subject.
+  * After this step is done, I've completed requirement 5 and have a tidy data set with the average of each variable for each unique combination of activity and subject.  The data is tidy because I consider an observation to be the specific instance of a subject performing an activity, associated with that observation are 66 variables representing the average of features from the original data set.
