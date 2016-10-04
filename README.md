@@ -80,3 +80,5 @@ This description walks through how the R script works and notes how the process 
   * Lastly, as outlined in the project submission guidelines I write the table using the write.table function with the option row.name=FALSE.
   
   * After this step is done, I've completed requirement 5 and have a tidy data set with the average of each variable for each unique combination of activity and subject.  The data is tidy because I consider an observation to be the specific instance of a subject performing an activity, associated with that observation are 66 variables representing the average of features from the original data set.
+  
+  * The code to read the tidy data set back into R is: data <- read.table("filePath", header=TRUE).  Where filePath is updated to reflect the path to the file. 
