@@ -53,5 +53,6 @@ This description walks through how the R script works and notes how the process 
   
   * The assignment asks that only measurements on the mean and standard deviation for each measurement are used.  To ensure that I only include those measurements I filter the x data to only include variables with "mean()" or "std()" in the variable name.  I assume the additional variables (gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean and tBodyGyroJerkMean) should be excluded from the data as these are based on angle measurements rather than means.  After filtering the data I'm left with 66 of the 561 features, with names included.
 
-  * Clean up the feature names.  I remove the identifier number at the beginning of the feature name using the strsplit and sapply functions.  I also remove the parentheses and replace the dashes with underscores.  As an example: 
-1 tBodyAcc-mean()-X -> tBodyAcc_mean_X
+  * Clean up the feature names.  I remove the identifier number at the beginning of the feature name using the strsplit and sapply functions.  I also remove the parentheses and replace the dashes with underscores.  As an example:
+    
+     - 1 tBodyAcc-mean()-X -> tBodyAcc_mean_X
