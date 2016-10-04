@@ -1,11 +1,12 @@
 # TidyDataProject
-Submission for the Coursera Getting and Cleaning Data - Tidy Data project by Scott Fry
+
+  Submission for the Coursera Getting and Cleaning Data - Tidy Data project by Scott Fry
 
 ## Files Included
 
-1. run_analysis.R: The R script that does all the analysis from downloading the data to writing the final tidy data set.
-2. CodeBook.md: The code book that describes the variables, the data and the processing done on the raw data.
-3. README.md: This readme file that describes the files included and how the R script does the analysis.
+  1. run_analysis.R: The R script that does all the analysis from downloading the data to writing the final tidy data set.
+  2. CodeBook.md: The code book that describes the variables, the data and the processing done on the raw data.
+  3. README.md: This readme file that describes the files included and how the R script does the analysis.
 
 ## How the R script performs the data analysis
 
@@ -16,5 +17,9 @@ Submission for the Coursera Getting and Cleaning Data - Tidy Data project by Sco
   3. Uses descriptive activity names to name the activities in the data set.
   4. Appropriately labels the data set with descriptive variable names.
   5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each      subject.
-  
-  
+ 
+This description walks through how the R script works and notes how the process meets the requirements listed above.
+
+### Step 1: Download Data
+
+
